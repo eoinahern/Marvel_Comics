@@ -10,5 +10,5 @@ import retrofit2.http.GET;
 public interface MarvelService {
 
 	@GET("v1/public/comics")
-	Observable<List<Comic>> stuff() ;
+	Observable<List<Comic>> getComics();
 }

@@ -14,5 +14,4 @@ public abstract class ComicImage {
 	public static TypeAdapter<ComicImage> typeAdapter(Gson gson) {
 		return new AutoValue_ComicImage.GsonTypeAdapter(gson);
 	}
-
 }

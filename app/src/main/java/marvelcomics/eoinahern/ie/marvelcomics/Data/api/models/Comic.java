@@ -26,5 +26,4 @@ public abstract class Comic {
 	public static TypeAdapter<Comic> getTypeAdapter(Gson gson) {
 		return new AutoValue_Comic.GsonTypeAdapter(gson);
 	}
-
 }
