@@ -10,6 +10,4 @@ public interface MainGalleryActivityView extends BaseView {
 	void hideLoading();
 
 	void updateRecycler();
-
-
 }
