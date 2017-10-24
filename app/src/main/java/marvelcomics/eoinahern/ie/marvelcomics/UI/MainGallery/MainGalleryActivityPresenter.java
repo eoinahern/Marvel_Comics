@@ -1,12 +1,9 @@
 package marvelcomics.eoinahern.ie.marvelcomics.UI.MainGallery;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
-import io.reactivex.observers.DisposableObserver;
 import marvelcomics.eoinahern.ie.marvelcomics.DI.annotation.PerScreen;
-import marvelcomics.eoinahern.ie.marvelcomics.Data.api.api.MarvelService;
+import marvelcomics.eoinahern.ie.marvelcomics.Data.api.models.ComicWrapper;
 import marvelcomics.eoinahern.ie.marvelcomics.Domain.BaseDisposableObserver;
 import marvelcomics.eoinahern.ie.marvelcomics.Domain.MainGallery.GetMainGalleryInteractor;
 import marvelcomics.eoinahern.ie.marvelcomics.UI.BasePresenter;
@@ -23,22 +20,24 @@ public class MainGalleryActivityPresenter extends BasePresenter<MainGalleryActiv
 
 	public void loadData() {
 
-		getMainGalleryInteractor.execute(new BaseDisposableObserver<List<String>>() {
+		getMainGalleryInteractor.execute(new BaseDisposableObserver<ComicWrapper>() {
 
 			@Override
-			public void onNext(List<String> strings) {
+			public void onNext(ComicWrapper wrapper) {
 				//return data and update UI
+
+				getView().hideLoading();
+				getView().updateRecycler(wrapper.data().results());
 			}
 
 			@Override
 			public void onError(Throwable t) {
 				super.onError(t);
-
+				getView().hideLoading();
+				getView().showError();
 				//update UI
 			}
 		});
-
-
 	}
 
 	@Override

@@ -1,6 +1,9 @@
 package marvelcomics.eoinahern.ie.marvelcomics.Data.api.api;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
@@ -21,15 +24,28 @@ public class MarvelServiceInterceptor implements Interceptor {
 		Request originalRequest = chain.request();
 		HttpUrl originalHttpUrl = originalRequest.url();
 
+		MessageDigest md = null;
 
-		HttpUrl url = originalHttpUrl.newBuilder()
+		try {
+			md = MessageDigest.getInstance("MD5", "1" + "5de1fabcda2ea08912bd8b09bca4321f50563655" + apiKey);
+
+			HttpUrl url = originalHttpUrl.newBuilder()
 				.addQueryParameter("apikey", apiKey)
+				.addQueryParameter("ts", "1")
+				.addQueryParameter("hash", md.toString())
 				.build();
 
+			Request.Builder requestBuilder = originalRequest.newBuilder()
+					.url(url);
 
-		Request.Builder requestBuilder = originalRequest.newBuilder()
-				.url(url);
+			return chain.proceed(requestBuilder.build());
 
-		return chain.proceed(requestBuilder.build());
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (NoSuchProviderException e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 }
