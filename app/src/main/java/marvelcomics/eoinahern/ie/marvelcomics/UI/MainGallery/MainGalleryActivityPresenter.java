@@ -31,11 +31,19 @@ public class MainGalleryActivityPresenter extends BasePresenter<MainGalleryActiv
 			}
 
 			@Override
-			public void onError(Throwable t)  {
+			public void onError(Throwable t) {
 				super.onError(t);
 
 				//update UI
 			}
 		});
+
+
+	}
+
+	@Override
+	public void detachView() {
+		super.detachView();
+		getMainGalleryInteractor.dispose();
 	}
 }
