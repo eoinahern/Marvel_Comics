@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import marvelcomics.eoinahern.ie.marvelcomics.App;
 import marvelcomics.eoinahern.ie.marvelcomics.R;
 import marvelcomics.eoinahern.ie.marvelcomics.UI.BaseActivity;
 
@@ -28,7 +29,7 @@ public class MainGalleryActivity extends BaseActivity implements MainGalleryActi
 
 	@Override
 	public void inject() {
-
+		App.get(this).getComponent().plus(new MainGalleryActivityComponent.MainGalleryActivityModule(this)).inject(this);
 	}
 
 	@Override
