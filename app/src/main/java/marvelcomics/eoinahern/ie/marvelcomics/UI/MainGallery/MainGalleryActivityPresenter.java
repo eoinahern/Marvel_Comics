@@ -1,5 +1,7 @@
 package marvelcomics.eoinahern.ie.marvelcomics.UI.MainGallery;
 
+import android.util.Log;
+
 import javax.inject.Inject;
 
 import marvelcomics.eoinahern.ie.marvelcomics.DI.annotation.PerScreen;

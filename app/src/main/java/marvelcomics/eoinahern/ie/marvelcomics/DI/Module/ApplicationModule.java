@@ -86,7 +86,7 @@ public class ApplicationModule {
 	@Singleton
 	@Named("url")
 	public HttpUrl getURl() {
-		return HttpUrl.parse("https://gateway.marvel.com/");
+		return HttpUrl.parse("http://gateway.marvel.com/");
 	}
 
 	@Provides
@@ -109,6 +109,7 @@ public class ApplicationModule {
 
 		return new GsonBuilder()
 				.registerTypeAdapterFactory(GsonAdapterFactory.create())
+				.setLenient()
 				.create();
 	}
 

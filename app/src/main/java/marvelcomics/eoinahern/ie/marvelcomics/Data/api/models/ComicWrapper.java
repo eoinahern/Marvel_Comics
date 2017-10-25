@@ -5,13 +5,12 @@ import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
 
+
 @AutoValue
 public abstract class ComicWrapper {
 
-	@SerializedName("code")
 	public abstract int code();
 
-	@SerializedName("status")
 	public abstract String status();
 
 	@SerializedName("data")
