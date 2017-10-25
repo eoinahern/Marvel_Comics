@@ -59,7 +59,6 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
     compile "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
     compile "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
-    //compile "com.squareup.retrofit2:adapter-rxjava:$RETROFIT_VERSION"
     compile "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VERSION"
 
     //okhttp
@@ -77,7 +76,8 @@ dependencies {
     //Annotation Processors
     annotationProcessor "com.ryanharter.auto.value:auto-value-gson:$AUTO_VALUE_GSON_VERSION"
     annotationProcessor "com.google.auto.value:auto-value:$AUTO_VALUE_VERSION"
-    annotationProcessor 'com.ryanharter.auto.value:auto-value-parcel:0.2.5'
+    provided "com.ryanharter.auto.value:auto-value-gson-annotations:$AUTO_VALUE_GSON_VERSION"
+    annotationProcessor 'com.gabrielittner.auto.value:auto-value-with:1.0.0'
     annotationProcessor "com.jakewharton:butterknife-compiler:$BUTTER_KNIFE_VERSION"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
