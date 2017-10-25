@@ -32,6 +32,7 @@ dependencies {
     final RETROFIT_VERSION = '2.3.0'
     final FRESCO_VERSION = '1.5.0'
     final DAGGER_VERSION = '2.12'
+    final OKHTTP_VERSION = '3.9.0'
 
     configurations.all {
         resolutionStrategy.force 'com.google.auto.value:auto-value:1.4.1'
@@ -58,7 +59,10 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
     compile "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
     compile "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
-    compile "com.squareup.retrofit2:adapter-rxjava:$RETROFIT_VERSION"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VERSION"
+
+    //okhttp
+    compile "com.squareup.okhttp3:okhttp:$OKHTTP_VERSION"
 
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'io.reactivex.rxjava2:rxjava:2.1.5'
@@ -72,7 +76,8 @@ dependencies {
     //Annotation Processors
     annotationProcessor "com.ryanharter.auto.value:auto-value-gson:$AUTO_VALUE_GSON_VERSION"
     annotationProcessor "com.google.auto.value:auto-value:$AUTO_VALUE_VERSION"
-    annotationProcessor 'com.ryanharter.auto.value:auto-value-parcel:0.2.5'
+    provided "com.ryanharter.auto.value:auto-value-gson-annotations:$AUTO_VALUE_GSON_VERSION"
+    annotationProcessor 'com.gabrielittner.auto.value:auto-value-with:1.0.0'
     annotationProcessor "com.jakewharton:butterknife-compiler:$BUTTER_KNIFE_VERSION"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])

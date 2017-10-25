@@ -6,11 +6,10 @@ import android.util.Log;
 
 import io.reactivex.observers.DisposableObserver;
 
-public abstract  class BaseDisposableObserver<T> extends DisposableObserver<T> {
-
+public abstract class BaseDisposableObserver<T> extends DisposableObserver<T> {
 
 	@Override
-	public void onComplete(){
+	public void onComplete() {
 	}
 
 	@Override
@@ -19,6 +18,7 @@ public abstract  class BaseDisposableObserver<T> extends DisposableObserver<T> {
 
 		Log.d("message", t.getMessage());
 		Log.d("cause", t.getLocalizedMessage());
+		t.printStackTrace();
 
 	}
 }

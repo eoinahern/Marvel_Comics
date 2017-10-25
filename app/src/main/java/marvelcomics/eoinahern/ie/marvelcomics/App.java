@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 import marvelcomics.eoinahern.ie.marvelcomics.DI.Component.ApplicationComponent;
+import marvelcomics.eoinahern.ie.marvelcomics.DI.Component.DaggerApplicationComponent;
+import marvelcomics.eoinahern.ie.marvelcomics.DI.Module.ApplicationModule;
 
 public class App extends Application {
 
@@ -19,6 +21,13 @@ public class App extends Application {
 	}
 
 	public  ApplicationComponent getComponent() {
+
+		if(appComponent == null) {
+			appComponent = DaggerApplicationComponent.builder()
+					.applicationModule(new ApplicationModule(this))
+					.build();
+		}
+
 		return appComponent;
 	}
 }
