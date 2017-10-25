@@ -1,6 +1,7 @@
 package marvelcomics.eoinahern.ie.marvelcomics.UI.MainGallery;
 
 import dagger.Module;
+import dagger.Provides;
 import dagger.Subcomponent;
 import marvelcomics.eoinahern.ie.marvelcomics.DI.Component.BaseActivityComponent;
 import marvelcomics.eoinahern.ie.marvelcomics.DI.Module.BaseActivityModule;
@@ -16,6 +17,12 @@ public interface MainGalleryActivityComponent extends BaseActivityComponent<Main
 
 		public MainGalleryActivityModule(MainGalleryActivity activity) {
 			super(activity);
+		}
+
+		@Provides
+		@PerScreen
+		public MainGalleryRecyclerViewAdapter getAdapter() {
+			return new MainGalleryRecyclerViewAdapter();
 		}
 	}
 }
