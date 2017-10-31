@@ -14,6 +14,8 @@ public class MarvelServiceInterceptor implements Interceptor {
 	private String publicApiKey;
 	private String md5;
 
+	private static final String amount = "100";
+
 	public MarvelServiceInterceptor(String publicApiKey, String md5) {
 		this.publicApiKey = publicApiKey;
 		this.md5 = md5;
@@ -29,6 +31,7 @@ public class MarvelServiceInterceptor implements Interceptor {
 				.addQueryParameter("apikey", publicApiKey)
 				.addQueryParameter("ts", "1")
 				.addQueryParameter("hash", md5)
+				.addQueryParameter("limit", amount)
 				.build();
 
 			Request request = originalRequest.newBuilder()

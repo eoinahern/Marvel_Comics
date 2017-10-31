@@ -8,6 +8,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.File;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -17,12 +18,16 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import marvelcomics.eoinahern.ie.marvelcomics.Data.api.api.ResponseCacheInterceptor;
 import marvelcomics.eoinahern.ie.marvelcomics.Data.api.api.MarvelService;
 import marvelcomics.eoinahern.ie.marvelcomics.Data.api.api.MarvelServiceInterceptor;
 import marvelcomics.eoinahern.ie.marvelcomics.Data.api.typeadapter.GsonAdapterFactory;
+import marvelcomics.eoinahern.ie.marvelcomics.Data.api.util.NetworkUtil;
+import okhttp3.Cache;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -73,12 +78,32 @@ public class ApplicationModule {
 		return new MarvelServiceInterceptor(apikey, md5);
 	}
 
+	@Provides
+	@Singleton
+	public NetworkUtil getNetworkUtil(Context context) {
+		return new NetworkUtil(context);
+	}
+
 
 	@Provides
 	@Singleton
-	public OkHttpClient getClient(Interceptor interceptor) {
+	public OkHttpClient getClient(Interceptor interceptor, Context cont, NetworkUtil networkUtil) {
 		return new OkHttpClient.Builder()
 				.addInterceptor(interceptor)
+				.addInterceptor((chain) -> {
+
+					Request req = chain.request();
+
+					if (!networkUtil.isConnected()) {
+						req = req.newBuilder()
+								.header("Cache-Control", "public, only-if-cached")
+								.build();
+					}
+
+					return chain.proceed(req);
+				})
+				.addNetworkInterceptor(new ResponseCacheInterceptor())
+				.cache(new Cache(new File(cont.getCacheDir(), "http-cache"), 10 * 1024 * 1024))
 				.build();
 	}
 

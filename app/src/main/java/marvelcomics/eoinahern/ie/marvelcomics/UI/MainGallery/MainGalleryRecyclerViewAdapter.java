@@ -1,6 +1,8 @@
 package marvelcomics.eoinahern.ie.marvelcomics.UI.MainGallery;
 
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +37,7 @@ public class MainGalleryRecyclerViewAdapter extends RecyclerView.Adapter<MainGal
 	public void onBindViewHolder(ViewHolder holder, int position) {
 
 		Comic comic = comicList.get(position);
-		//holder.comicImage.setImageURI();
+		holder.comicImage.setImageURI(Uri.parse(comic.thumbnail().path() + "/portrait_medium."  + comic.thumbnail().extension()));
 		holder.comicName.setText(comic.title());
 	}
 

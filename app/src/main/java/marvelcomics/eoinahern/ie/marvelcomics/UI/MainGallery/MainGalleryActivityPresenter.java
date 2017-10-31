@@ -1,7 +1,5 @@
 package marvelcomics.eoinahern.ie.marvelcomics.UI.MainGallery;
 
-import android.util.Log;
-
 import javax.inject.Inject;
 
 import marvelcomics.eoinahern.ie.marvelcomics.DI.annotation.PerScreen;
@@ -21,6 +19,8 @@ public class MainGalleryActivityPresenter extends BasePresenter<MainGalleryActiv
 	}
 
 	public void loadData() {
+
+		getView().showLoading();
 
 		getMainGalleryInteractor.execute(new BaseDisposableObserver<ComicWrapper>() {
 

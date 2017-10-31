@@ -22,12 +22,14 @@ public class IntroActivity extends BaseActivity {
 
 
 		handler = new Handler();
-		handler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				startActivity(new Intent(IntroActivity.this, MainGalleryActivity.class));
-			}
+		handler.postDelayed(()
+				->
+		{
+			startActivity(new Intent(IntroActivity.this, MainGalleryActivity.class));
+			finish();
+
 		}, 1000);
+
 
 	}
 

@@ -21,6 +21,23 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+
+    flavorDimensions "default"
+
+    //prod flavours may not be entirely necessary
+
+    productFlavors {
+        prod {
+
+            dimension "default"
+
+        }
+        mock {
+
+            dimension "default"
+
+        }
+    }
 }
 
 dependencies {
@@ -44,7 +61,7 @@ dependencies {
 
     //AutoValue
     provided "com.jakewharton.auto.value:auto-value-annotations:$AUTO_VALUE_VERSION"
-    provided "com.ryanharter.auto.value:auto-value-gson:$AUTO_VALUE_GSON_VERSION"
+    compile "com.ryanharter.auto.value:auto-value-gson:$AUTO_VALUE_GSON_VERSION"
     compile 'com.ryanharter.auto.value:auto-value-parcel-adapter:0.2.5'
 
     //butterknife
@@ -73,13 +90,14 @@ dependencies {
     //image loader
     compile "com.facebook.fresco:fresco:$FRESCO_VERSION"
 
+    //progbar
+    compile 'me.zhanghai.android.materialprogressbar:library:1.4.1'
+
     //Annotation Processors
     annotationProcessor "com.ryanharter.auto.value:auto-value-gson:$AUTO_VALUE_GSON_VERSION"
     annotationProcessor "com.google.auto.value:auto-value:$AUTO_VALUE_VERSION"
-    provided "com.ryanharter.auto.value:auto-value-gson-annotations:$AUTO_VALUE_GSON_VERSION"
     annotationProcessor 'com.gabrielittner.auto.value:auto-value-with:1.0.0'
     annotationProcessor "com.jakewharton:butterknife-compiler:$BUTTER_KNIFE_VERSION"
-
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.android.support:appcompat-v7:$SUPPORT_LIB_VERSION"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
