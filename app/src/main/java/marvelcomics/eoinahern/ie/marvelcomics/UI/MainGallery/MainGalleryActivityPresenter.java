@@ -3,6 +3,7 @@ package marvelcomics.eoinahern.ie.marvelcomics.UI.MainGallery;
 import javax.inject.Inject;
 
 import marvelcomics.eoinahern.ie.marvelcomics.DI.annotation.PerScreen;
+import marvelcomics.eoinahern.ie.marvelcomics.Data.api.models.Comic;
 import marvelcomics.eoinahern.ie.marvelcomics.Data.api.models.ComicWrapper;
 import marvelcomics.eoinahern.ie.marvelcomics.Domain.BaseDisposableObserver;
 import marvelcomics.eoinahern.ie.marvelcomics.Domain.MainGallery.GetMainGalleryInteractor;
@@ -37,9 +38,12 @@ public class MainGalleryActivityPresenter extends BasePresenter<MainGalleryActiv
 				super.onError(t);
 				getView().hideLoading();
 				getView().showError();
-				//update UI
 			}
 		});
+	}
+
+	public void navigateToComic(Comic comic) {
+		getView().goToComicInfo(comic);
 	}
 
 	@Override

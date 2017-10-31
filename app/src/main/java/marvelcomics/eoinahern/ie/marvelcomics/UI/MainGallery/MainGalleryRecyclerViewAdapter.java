@@ -1,6 +1,7 @@
 package marvelcomics.eoinahern.ie.marvelcomics.UI.MainGallery;
 
 import android.net.Uri;
+import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,8 +22,10 @@ import marvelcomics.eoinahern.ie.marvelcomics.R;
 public class MainGalleryRecyclerViewAdapter extends RecyclerView.Adapter<MainGalleryRecyclerViewAdapter.ViewHolder> {
 
 	private List<Comic> comicList;
+	private final MainGalleryActivityPresenter presenter;
 
-	public MainGalleryRecyclerViewAdapter() {
+	public MainGalleryRecyclerViewAdapter(MainGalleryActivityPresenter presenter) {
+		this.presenter = presenter;
 		this.comicList = new ArrayList<>();
 	}
 
@@ -56,7 +59,7 @@ public class MainGalleryRecyclerViewAdapter extends RecyclerView.Adapter<MainGal
 		return comicList.size();
 	}
 
-	public class ViewHolder extends RecyclerView.ViewHolder {
+	public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 		@BindView(R.id.comic_image) SimpleDraweeView comicImage;
 		@BindView(R.id.comic_name) TextView comicName;
@@ -64,7 +67,13 @@ public class MainGalleryRecyclerViewAdapter extends RecyclerView.Adapter<MainGal
 		public ViewHolder(View view) {
 			super(view);
 			ButterKnife.bind(this, view);
+			itemView.setOnClickListener(this);
+		}
 
+		@Override
+		public void onClick(View view) {
+			Log.d("position", String.valueOf(getAdapterPosition()));
+			presenter.navigateToComic(comicList.get(getAdapterPosition()));
 		}
 	}
 }
