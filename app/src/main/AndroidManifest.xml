@@ -17,10 +17,9 @@
 		android:theme="@style/AppTheme">
 		<activity android:name=".UI.MainGallery.MainGalleryActivity"
 			android:screenOrientation="portrait"/>
-		<activity android:name=".UI.BaseActivity"
-			android:screenOrientation="portrait"/>
 		<activity android:name=".UI.Intro.IntroActivity"
-			android:screenOrientation="portrait">
+			android:screenOrientation="portrait"
+			 >
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 

@@ -96,7 +96,7 @@ public class ComicInfoActivity extends BaseActivity {
 
 	@Override
 	public void inject() {
-       //not required at present
+		//not required at present
 	}
 
 	public static Intent getStartIntent(Context context, Comic comic) {
