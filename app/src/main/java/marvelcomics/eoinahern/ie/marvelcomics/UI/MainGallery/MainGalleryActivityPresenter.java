@@ -20,6 +20,8 @@ public class MainGalleryActivityPresenter extends BasePresenter<MainGalleryActiv
 
 	public void loadData() {
 
+		getView().showLoading();
+
 		getMainGalleryInteractor.execute(new BaseDisposableObserver<ComicWrapper>() {
 
 			@Override

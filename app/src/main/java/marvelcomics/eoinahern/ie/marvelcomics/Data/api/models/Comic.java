@@ -23,6 +23,8 @@ public abstract class Comic {
 
 	public abstract List<ComicImage> images();
 
+	public abstract ComicImage thumbnail();
+
 	public static TypeAdapter<Comic> getTypeAdapter(Gson gson) {
 		return new AutoValue_Comic.GsonTypeAdapter(gson);
 	}

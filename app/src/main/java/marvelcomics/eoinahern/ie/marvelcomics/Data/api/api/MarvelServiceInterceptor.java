@@ -1,5 +1,7 @@
 package marvelcomics.eoinahern.ie.marvelcomics.Data.api.api;
 
+import android.util.Log;
+
 import java.io.IOException;
 
 import okhttp3.HttpUrl;
@@ -12,6 +14,8 @@ public class MarvelServiceInterceptor implements Interceptor {
 	private String publicApiKey;
 	private String md5;
 
+	private static final String amount = "100";
+
 	public MarvelServiceInterceptor(String publicApiKey, String md5) {
 		this.publicApiKey = publicApiKey;
 		this.md5 = md5;
@@ -23,16 +27,18 @@ public class MarvelServiceInterceptor implements Interceptor {
 		Request originalRequest = chain.request();
 		HttpUrl originalHttpUrl = originalRequest.url();
 
-
-			HttpUrl url = originalHttpUrl.newBuilder()
+		HttpUrl url = originalHttpUrl.newBuilder()
 				.addQueryParameter("apikey", publicApiKey)
 				.addQueryParameter("ts", "1")
 				.addQueryParameter("hash", md5)
+				.addQueryParameter("limit", amount)
 				.build();
 
-			Request.Builder requestBuilder = originalRequest.newBuilder()
-					.url(url);
+			Request request = originalRequest.newBuilder()
+					.url(url).build();
 
-			return chain.proceed(requestBuilder.build());
+			Log.d("request", request.toString());
+
+			return chain.proceed(request);
 	}
 }

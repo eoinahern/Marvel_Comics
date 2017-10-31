@@ -1,3 +1,4 @@
 <resources>
 	<string name="app_name">MarvelComics</string>
+	<string name="gallery_name">Gallery</string>
 </resources>
