@@ -1,6 +1,7 @@
 package marvelcomics.eoinahern.ie.marvelcomics.Data.api.models;
 
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
 import com.google.gson.Gson;
@@ -20,6 +21,9 @@ public abstract class Comic implements Parcelable {
 	public abstract String format();
 
 	public abstract int pageCount();
+
+	@Nullable
+	public abstract String description();
 
 	public abstract List<ComicPrice> prices();
 
