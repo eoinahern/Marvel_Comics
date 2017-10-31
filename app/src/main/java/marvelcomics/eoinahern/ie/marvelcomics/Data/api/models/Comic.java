@@ -1,5 +1,7 @@
 package marvelcomics.eoinahern.ie.marvelcomics.Data.api.models;
 
+import android.os.Parcelable;
+
 import com.google.auto.value.AutoValue;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
@@ -7,7 +9,7 @@ import com.google.gson.TypeAdapter;
 import java.util.List;
 
 @AutoValue
-public abstract class Comic {
+public abstract class Comic implements Parcelable {
 
 	public abstract int id();
 

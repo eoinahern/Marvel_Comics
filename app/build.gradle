@@ -95,6 +95,7 @@ dependencies {
 
     //Annotation Processors
     annotationProcessor "com.ryanharter.auto.value:auto-value-gson:$AUTO_VALUE_GSON_VERSION"
+    annotationProcessor 'com.ryanharter.auto.value:auto-value-parcel:0.2.5'
     annotationProcessor "com.google.auto.value:auto-value:$AUTO_VALUE_VERSION"
     annotationProcessor 'com.gabrielittner.auto.value:auto-value-with:1.0.0'
     annotationProcessor "com.jakewharton:butterknife-compiler:$BUTTER_KNIFE_VERSION"

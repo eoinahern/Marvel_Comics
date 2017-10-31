@@ -15,4 +15,6 @@ public interface MainGalleryActivityView extends BaseView {
 	void updateRecycler(List<Comic> comics);
 
 	void showError();
+
+	void goToComicInfo(Comic comic);
 }

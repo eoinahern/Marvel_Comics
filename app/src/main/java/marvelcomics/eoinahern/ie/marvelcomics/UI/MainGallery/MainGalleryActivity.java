@@ -18,6 +18,7 @@ import marvelcomics.eoinahern.ie.marvelcomics.App;
 import marvelcomics.eoinahern.ie.marvelcomics.Data.api.models.Comic;
 import marvelcomics.eoinahern.ie.marvelcomics.R;
 import marvelcomics.eoinahern.ie.marvelcomics.UI.BaseActivity;
+import marvelcomics.eoinahern.ie.marvelcomics.UI.ComicInfo.ComicInfoActivity;
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
 public class MainGalleryActivity extends BaseActivity implements MainGalleryActivityView {
@@ -87,6 +88,11 @@ public class MainGalleryActivity extends BaseActivity implements MainGalleryActi
 	@Override
 	public void showError() {
 		Log.d("empty", "null or empty");
+	}
+
+	@Override
+	public void goToComicInfo(Comic comic) {
+		startActivity(ComicInfoActivity.getStartIntent(this, comic));
 	}
 
 
