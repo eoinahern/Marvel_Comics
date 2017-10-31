@@ -29,6 +29,8 @@ public abstract class Comic implements Parcelable {
 
 	public abstract List<ComicImage> images();
 
+	public abstract ComicCreators creators();
+
 	public abstract ComicImage thumbnail();
 
 	public static TypeAdapter<Comic> getTypeAdapter(Gson gson) {

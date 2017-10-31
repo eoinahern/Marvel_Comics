@@ -15,9 +15,12 @@
 		android:roundIcon="@drawable/marvel_logo"
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme">
-		<activity android:name=".UI.MainGallery.MainGalleryActivity" />
-		<activity android:name=".UI.BaseActivity" />
-		<activity android:name=".UI.Intro.IntroActivity">
+		<activity android:name=".UI.MainGallery.MainGalleryActivity"
+			android:screenOrientation="portrait"/>
+		<activity android:name=".UI.BaseActivity"
+			android:screenOrientation="portrait"/>
+		<activity android:name=".UI.Intro.IntroActivity"
+			android:screenOrientation="portrait">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 

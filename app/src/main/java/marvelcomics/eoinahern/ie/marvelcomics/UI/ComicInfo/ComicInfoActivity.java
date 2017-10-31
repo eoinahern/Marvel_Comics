@@ -24,6 +24,10 @@ public class ComicInfoActivity extends BaseActivity {
 	@BindView(R.id.comic_image) SimpleDraweeView comicImage;
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.description) TextView description;
+	@BindView(R.id.authors_txt) TextView authors;
+	@BindView(R.id.title) TextView title;
+	@BindView(R.id.price) TextView price;
+	@BindView(R.id.pages) TextView pages;
 
 	private Comic comic;
 
@@ -53,10 +57,24 @@ public class ComicInfoActivity extends BaseActivity {
 		comicImage.setImageURI(Uri.parse(comic.thumbnail().path() + "/portrait_small." + comic.thumbnail().extension()));
 	}
 
+
+	/**
+	 * a lot of string manipulation here. may need a mapper class to map
+	 * between data and domain layers rather than doing work in the View of
+	 * the app.
+	 */
+
 	public void setText() {
 
 		if (comic.description() != null)
 			description.setText(Html.fromHtml(comic.description()).toString());
+
+		title.setText(comic.title().split("\\(")[0]);
+		price.setText(String.format("$%.2f", comic.prices().get(0).price()));
+		pages.setText(String.valueOf(comic.pageCount()));
+
+		if (comic.creators().available() > 0)
+			authors.setText(comic.creators().toString());
 
 	}
 
@@ -71,7 +89,6 @@ public class ComicInfoActivity extends BaseActivity {
 		}
 	}
 
-
 	@Override
 	public int getLayout() {
 		return R.layout.activity_comic_info;
@@ -79,7 +96,7 @@ public class ComicInfoActivity extends BaseActivity {
 
 	@Override
 	public void inject() {
-
+       //not required at present
 	}
 
 	public static Intent getStartIntent(Context context, Comic comic) {

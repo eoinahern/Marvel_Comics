@@ -1,6 +1,11 @@
 <resources>
 	<string name="app_name">MarvelComics</string>
 	<string name="gallery_name">Gallery</string>
+	<string name="dollar">$%s</string>
 	<string name="desc_not_available">Description not currently available</string>
+	<string name="authors_not_available">Authors not available</string>
 	<string name="desc">Description</string>
+	<string name="pages">Pages:</string>
+	<string name="price">Price:</string>
+	<string name="authors">Authors</string>
 </resources>
