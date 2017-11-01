@@ -1,5 +1,7 @@
 package marvelcomics.eoinahern.ie.marvelcomics.UI.MainGallery;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import marvelcomics.eoinahern.ie.marvelcomics.DI.annotation.PerScreen;
@@ -7,6 +9,7 @@ import marvelcomics.eoinahern.ie.marvelcomics.Data.api.models.Comic;
 import marvelcomics.eoinahern.ie.marvelcomics.Data.api.models.ComicWrapper;
 import marvelcomics.eoinahern.ie.marvelcomics.Domain.BaseDisposableObserver;
 import marvelcomics.eoinahern.ie.marvelcomics.Domain.MainGallery.GetMainGalleryInteractor;
+import marvelcomics.eoinahern.ie.marvelcomics.Domain.models.DomainComic;
 import marvelcomics.eoinahern.ie.marvelcomics.UI.BasePresenter;
 
 @PerScreen
@@ -23,14 +26,14 @@ public class MainGalleryActivityPresenter extends BasePresenter<MainGalleryActiv
 
 		getView().showLoading();
 
-		getMainGalleryInteractor.execute(new BaseDisposableObserver<ComicWrapper>() {
+		getMainGalleryInteractor.execute(new BaseDisposableObserver<List<DomainComic>>() {
 
 			@Override
-			public void onNext(ComicWrapper wrapper) {
+			public void onNext(List<DomainComic> comicList) {
 				//return data and update UI
 
 				getView().hideLoading();
-				getView().updateRecycler(wrapper.data().results());
+				getView().updateRecycler(comicList);
 			}
 
 			@Override
@@ -42,7 +45,7 @@ public class MainGalleryActivityPresenter extends BasePresenter<MainGalleryActiv
 		});
 	}
 
-	public void navigateToComic(Comic comic) {
+	public void navigateToComic(DomainComic comic) {
 		getView().goToComicInfo(comic);
 	}
 

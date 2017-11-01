@@ -7,14 +7,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
-import marvelcomics.eoinahern.ie.marvelcomics.Data.api.models.Comic;
+import marvelcomics.eoinahern.ie.marvelcomics.Domain.models.DomainComic;
 import marvelcomics.eoinahern.ie.marvelcomics.R;
 import marvelcomics.eoinahern.ie.marvelcomics.UI.BaseActivity;
 
@@ -29,7 +28,7 @@ public class ComicInfoActivity extends BaseActivity {
 	@BindView(R.id.price) TextView price;
 	@BindView(R.id.pages) TextView pages;
 
-	private Comic comic;
+	private DomainComic comic;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,21 +39,20 @@ public class ComicInfoActivity extends BaseActivity {
 		setText();
 	}
 
-	public Comic getComic() {
-		return (Comic) getIntent().getParcelableExtra(COMIC);
+	public DomainComic getComic() {
+		return (DomainComic) getIntent().getParcelableExtra(COMIC);
 	}
 
 	public void setActionBar() {
 		setSupportActionBar(toolbar);
 		toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
-		toolbar.setTitle(comic.title());
 		getSupportActionBar().setHomeButtonEnabled(true);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_back_dark);
 	}
 
 	public void setImage() {
-		comicImage.setImageURI(Uri.parse(comic.thumbnail().path() + "/portrait_small." + comic.thumbnail().extension()));
+		comicImage.setImageURI(Uri.parse(comic.smallImageUrl()));
 	}
 
 
@@ -67,14 +65,13 @@ public class ComicInfoActivity extends BaseActivity {
 	public void setText() {
 
 		if (comic.description() != null)
-			description.setText(Html.fromHtml(comic.description()).toString());
+			description.setText(comic.description());
+		title.setText(comic.abbreviatedTitle());
+		price.setText(comic.price());
+		pages.setText(String.valueOf(comic.pages()));
 
-		title.setText(comic.title().split("\\(")[0]);
-		price.setText(String.format("$%.2f", comic.prices().get(0).price()));
-		pages.setText(String.valueOf(comic.pageCount()));
-
-		if (comic.creators().available() > 0)
-			authors.setText(comic.creators().toString());
+		if (!comic.authors().isEmpty())
+			authors.setText(comic.authors());
 
 	}
 
@@ -99,7 +96,7 @@ public class ComicInfoActivity extends BaseActivity {
 		//not required at present
 	}
 
-	public static Intent getStartIntent(Context context, Comic comic) {
+	public static Intent getStartIntent(Context context, DomainComic comic) {
 		return new Intent(context, ComicInfoActivity.class).putExtra(COMIC, comic);
 
 	}

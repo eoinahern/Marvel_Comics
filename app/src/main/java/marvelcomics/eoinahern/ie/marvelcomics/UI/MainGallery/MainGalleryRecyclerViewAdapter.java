@@ -17,11 +17,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import marvelcomics.eoinahern.ie.marvelcomics.Data.api.models.Comic;
+import marvelcomics.eoinahern.ie.marvelcomics.Domain.models.DomainComic;
 import marvelcomics.eoinahern.ie.marvelcomics.R;
 
 public class MainGalleryRecyclerViewAdapter extends RecyclerView.Adapter<MainGalleryRecyclerViewAdapter.ViewHolder> {
 
-	private List<Comic> comicList;
+	private List<DomainComic> comicList;
 	private final MainGalleryActivityPresenter presenter;
 
 	public MainGalleryRecyclerViewAdapter(MainGalleryActivityPresenter presenter) {
@@ -39,12 +40,12 @@ public class MainGalleryRecyclerViewAdapter extends RecyclerView.Adapter<MainGal
 	@Override
 	public void onBindViewHolder(ViewHolder holder, int position) {
 
-		Comic comic = comicList.get(position);
-		holder.comicImage.setImageURI(Uri.parse(comic.thumbnail().path() + "/portrait_medium."  + comic.thumbnail().extension()));
-		holder.comicName.setText(comic.title());
+		DomainComic comic = comicList.get(position);
+		holder.comicImage.setImageURI(Uri.parse(comic.mediumImageUrl()));
+		holder.comicName.setText(comic.fullTitle());
 	}
 
-	public void updateView(List<Comic> comicListIn) {
+	public void updateView(List<DomainComic> comicListIn) {
 
 		if(!comicList.isEmpty()) {
 			comicList.clear();

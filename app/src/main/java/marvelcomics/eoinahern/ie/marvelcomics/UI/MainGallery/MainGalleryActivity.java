@@ -16,6 +16,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import marvelcomics.eoinahern.ie.marvelcomics.App;
 import marvelcomics.eoinahern.ie.marvelcomics.Data.api.models.Comic;
+import marvelcomics.eoinahern.ie.marvelcomics.Domain.models.DomainComic;
 import marvelcomics.eoinahern.ie.marvelcomics.R;
 import marvelcomics.eoinahern.ie.marvelcomics.UI.BaseActivity;
 import marvelcomics.eoinahern.ie.marvelcomics.UI.ComicInfo.ComicInfoActivity;
@@ -78,7 +79,7 @@ public class MainGalleryActivity extends BaseActivity implements MainGalleryActi
 	}
 
 	@Override
-	public void updateRecycler(List<Comic> comics) {
+	public void updateRecycler(List<DomainComic> comics) {
 
 		if (comics != null && !comics.isEmpty()) {
 			adapter.updateView(comics);
@@ -91,7 +92,7 @@ public class MainGalleryActivity extends BaseActivity implements MainGalleryActi
 	}
 
 	@Override
-	public void goToComicInfo(Comic comic) {
+	public void goToComicInfo(DomainComic comic) {
 		startActivity(ComicInfoActivity.getStartIntent(this, comic));
 	}
 
