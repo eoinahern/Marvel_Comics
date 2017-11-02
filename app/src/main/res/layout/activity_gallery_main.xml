@@ -1,45 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/background_black"
-	tools:context="marvelcomics.eoinahern.ie.marvelcomics.UI.MainGallery.MainGalleryActivity">
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 
-	<android.support.v7.widget.Toolbar
-		android:layout_width="match_parent"
-		android:layout_height="?attr/actionBarSize"
-		android:id="@+id/toolbar"
-		android:background="@color/marvel_red" />
-
-
-	<FrameLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent">
-
-	<android.support.v7.widget.RecyclerView
+	<android.support.constraint.ConstraintLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:visibility="gone"
-		android:layout_marginTop="?actionBarSize"
-		android:background="@color/background_black"
-		android:id="@+id/recycler">
+		android:id="@+id/constraint_layout"
+		tools:context="marvelcomics.eoinahern.ie.marvelcomics.UI.MainGallery.MainGalleryActivity">
 
-	</android.support.v7.widget.RecyclerView>
-
-
-	<me.zhanghai.android.materialprogressbar.MaterialProgressBar
-		android:layout_width="40dp"
-		android:layout_height="40dp"
-		android:id="@+id/progbar"
-		android:maxHeight="40dp"
-		android:layout_gravity="center"
-		android:maxWidth="40dp"
-		android:minHeight="40dp"
-		android:minWidth="40dp"
-		android:theme="@style/AppTheme.Progress" />
-
-	</FrameLayout>
+		<android.support.v7.widget.Toolbar
+			android:id="@+id/toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize"
+			android:background="@color/marvel_red" />
 
 
-</android.support.constraint.ConstraintLayout>
+		<FrameLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+			<android.support.v7.widget.RecyclerView
+				android:id="@+id/recycler"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_marginTop="?actionBarSize"
+				android:background="@color/background_black"
+				android:visibility="gone">
+
+			</android.support.v7.widget.RecyclerView>
+
+
+			<me.zhanghai.android.materialprogressbar.MaterialProgressBar
+				android:id="@+id/progbar"
+				android:layout_width="40dp"
+				android:layout_height="40dp"
+				android:layout_gravity="center"
+				android:maxHeight="40dp"
+				android:maxWidth="40dp"
+				android:minHeight="40dp"
+				android:minWidth="40dp"
+				android:theme="@style/AppTheme.Progress" />
+
+		</FrameLayout>
+
+
+	</android.support.constraint.ConstraintLayout>
+
+	<android.support.design.widget.FloatingActionButton
+		android:id="@+id/fab"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="16dp"
+		android:clickable="true"
+		android:src="@drawable/ic_launch_results"
+		app:layout_anchor="@id/constraint_layout"
+		app:elevation="20dp"
+		app:backgroundTint="@color/marvel_red"
+		app:layout_anchorGravity="bottom|right|end"/>
+
+
+
+</android.support.design.widget.CoordinatorLayout>

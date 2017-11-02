@@ -1,6 +1,7 @@
 package marvelcomics.eoinahern.ie.marvelcomics.UI.MainGallery;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,12 +15,14 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import marvelcomics.eoinahern.ie.marvelcomics.App;
 import marvelcomics.eoinahern.ie.marvelcomics.Data.api.models.Comic;
 import marvelcomics.eoinahern.ie.marvelcomics.Domain.models.DomainComic;
 import marvelcomics.eoinahern.ie.marvelcomics.R;
 import marvelcomics.eoinahern.ie.marvelcomics.UI.BaseActivity;
 import marvelcomics.eoinahern.ie.marvelcomics.UI.ComicInfo.ComicInfoActivity;
+import marvelcomics.eoinahern.ie.marvelcomics.UI.Results.ResultsActivity;
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
 public class MainGalleryActivity extends BaseActivity implements MainGalleryActivityView {
@@ -27,6 +30,7 @@ public class MainGalleryActivity extends BaseActivity implements MainGalleryActi
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.recycler) RecyclerView recyclerView;
 	@BindView(R.id.progbar) MaterialProgressBar progbar;
+	@BindView(R.id.fab) FloatingActionButton fab;
 
 	private ActionBar acBar;
 
@@ -101,5 +105,10 @@ public class MainGalleryActivity extends BaseActivity implements MainGalleryActi
 	public void onDestroy() {
 		super.onDestroy();
 		presenter.detachView();
+	}
+
+	@OnClick(R.id.fab)
+	public void openResultsActivity() {
+		startActivity(ResultsActivity.getStartIntent(this));
 	}
 }
