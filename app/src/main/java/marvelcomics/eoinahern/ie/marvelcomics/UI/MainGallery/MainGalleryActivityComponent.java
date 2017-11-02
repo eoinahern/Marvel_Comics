@@ -21,8 +21,8 @@ public interface MainGalleryActivityComponent extends BaseActivityComponent<Main
 
 		@Provides
 		@PerScreen
-		public MainGalleryRecyclerViewAdapter getAdapter() {
-			return new MainGalleryRecyclerViewAdapter();
+		public MainGalleryRecyclerViewAdapter getAdapter(MainGalleryActivityPresenter presenter) {
+			return new MainGalleryRecyclerViewAdapter(presenter);
 		}
 	}
 }
