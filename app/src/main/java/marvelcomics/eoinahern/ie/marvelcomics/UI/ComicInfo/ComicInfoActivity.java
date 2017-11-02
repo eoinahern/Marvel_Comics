@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ public class ComicInfoActivity extends BaseActivity {
 	@BindView(R.id.pages) TextView pages;
 
 	private DomainComic comic;
+	private ActionBar acBar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,22 +47,17 @@ public class ComicInfoActivity extends BaseActivity {
 
 	public void setActionBar() {
 		setSupportActionBar(toolbar);
+		acBar = getSupportActionBar();
 		toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
-		getSupportActionBar().setHomeButtonEnabled(true);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_back_dark);
+		acBar.setHomeButtonEnabled(true);
+		acBar.setDisplayHomeAsUpEnabled(true);
+		acBar.setHomeAsUpIndicator(R.drawable.ic_action_back_dark);
+		acBar.setTitle(R.string.details);
 	}
 
 	public void setImage() {
 		comicImage.setImageURI(Uri.parse(comic.smallImageUrl()));
 	}
-
-
-	/**
-	 * a lot of string manipulation here. may need a mapper class to map
-	 * between data and domain layers rather than doing work in the View of
-	 * the app.
-	 */
 
 	public void setText() {
 
@@ -72,7 +69,6 @@ public class ComicInfoActivity extends BaseActivity {
 
 		if (!comic.authors().isEmpty())
 			authors.setText(comic.authors());
-
 	}
 
 	@Override
