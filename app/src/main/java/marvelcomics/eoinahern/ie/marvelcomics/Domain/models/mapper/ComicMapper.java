@@ -20,6 +20,7 @@ public class ComicMapper {
 	}
 
 	private String price;
+	private float floatprice;
 	private String fullTitle;
 	private String abbreviatedTitle;
 	private String description;
@@ -31,6 +32,7 @@ public class ComicMapper {
 	public DomainComic mapComicToDomainComic(Comic comic) {
 
 		price = String.format("$%.2f", comic.prices().get(0).price());
+		floatprice = comic.prices().get(0).price();
 		fullTitle = comic.title();
 		abbreviatedTitle = comic.title().split("\\(")[0];
 
@@ -42,7 +44,7 @@ public class ComicMapper {
 		smallImageUrl = comic.thumbnail().path() + "/portrait_small." + comic.thumbnail().extension();
 		mediumImageUrl = comic.thumbnail().path() + "/portrait_medium." + comic.thumbnail().extension();
 
-		return DomainComic.getInstance(price, fullTitle, abbreviatedTitle, description, pages,
+		return DomainComic.getInstance(price, floatprice,  fullTitle, abbreviatedTitle, description, pages,
 				authors, smallImageUrl, mediumImageUrl);
 
 	}
@@ -56,8 +58,5 @@ public class ComicMapper {
 		}
 
 		return domainList;
-
 	}
-
-
 }

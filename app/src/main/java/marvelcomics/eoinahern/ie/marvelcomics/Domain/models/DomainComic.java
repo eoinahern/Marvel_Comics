@@ -12,6 +12,8 @@ public abstract class DomainComic implements Parcelable {
 
 	public abstract String price();
 
+	public abstract float floatprice();
+
 	public abstract String fullTitle();
 
 	public abstract String abbreviatedTitle();
@@ -31,10 +33,10 @@ public abstract class DomainComic implements Parcelable {
 		return new AutoValue_DomainComic.GsonTypeAdapter(gson);
 	}
 
-	public static DomainComic getInstance(String price, String fullTitle,  String abbreviatedTitle, String description, int pages,
+	public static DomainComic getInstance(String price,float floatPrice,  String fullTitle,  String abbreviatedTitle, String description, int pages,
 								   String authors, String smallImageUrl, String mediumImageUrl) {
 
-		return new AutoValue_DomainComic(price, fullTitle, abbreviatedTitle, description, pages,
+		return new AutoValue_DomainComic(price, floatPrice, fullTitle, abbreviatedTitle, description, pages,
 				authors, smallImageUrl , mediumImageUrl);
 	}
 }
