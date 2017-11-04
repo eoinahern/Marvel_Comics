@@ -9,6 +9,8 @@ import com.google.gson.TypeAdapter;
 
 import java.util.List;
 
+import marvelcomics.eoinahern.ie.marvelcomics.Domain.models.DomainComic;
+
 @AutoValue
 public abstract class Comic implements Parcelable {
 
