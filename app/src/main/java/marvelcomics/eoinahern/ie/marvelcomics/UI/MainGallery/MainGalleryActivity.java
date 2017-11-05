@@ -109,6 +109,6 @@ public class MainGalleryActivity extends BaseActivity implements MainGalleryActi
 
 	@OnClick(R.id.fab)
 	public void openResultsActivity() {
-		startActivity(ResultsActivity.getStartIntent(this));
+		startActivity(ResultsActivity.getStartIntent(this, adapter.getComicList()));
 	}
 }

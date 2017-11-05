@@ -2,14 +2,9 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:background="@color/transparent"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	>
-
-	<!--<RelativeLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:background="@color/transparent">-->
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
 		<RelativeLayout
@@ -19,17 +14,10 @@
 			app:layout_constraintTop_toTopOf="parent"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintLeft_toLeftOf="parent"
-
 			android:background="@drawable/card_background"
 			>
 
-
-			<RelativeLayout
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				>
-
-				<TextView
+			<TextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="Results"
@@ -38,13 +26,26 @@
 					android:textColor="@color/dark_grey"/>
 
 
-			</RelativeLayout>
+				<FrameLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent">
+
+					<me.zhanghai.android.materialprogressbar.MaterialProgressBar
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/progbar"
+						android:theme="@style/AppTheme.Progress"
+						android:layout_gravity="center"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:id="@+id/no_reslts"
+						tools:text="no results available!"/>
 
 
-
-		<!--</RelativeLayout>-->
-
-
+				</FrameLayout>
 		</RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

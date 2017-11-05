@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import marvelcomics.eoinahern.ie.marvelcomics.DI.annotation.PerScreen;
 import marvelcomics.eoinahern.ie.marvelcomics.Domain.models.DomainComic;
 
+@PerScreen
 public class KnapSackAlgo {
 
 	private List<DomainComic> comicList;
@@ -13,7 +17,7 @@ public class KnapSackAlgo {
 	private int weight[];
 	private int totalWeight;
 
-
+	@Inject
 	public KnapSackAlgo() {
 		comicList = new ArrayList<>();
 		totalWeight = 0;
@@ -46,7 +50,6 @@ public class KnapSackAlgo {
 	}
 
 	public void knapSackInit() {
-
 		createArrays();
 		knapSack(pages, weight, totalWeight, 0);
 	}
@@ -64,6 +67,4 @@ public class KnapSackAlgo {
 				knapSack(pages, wt, totalWeight, index + 1));
 
 	}
-
-
 }

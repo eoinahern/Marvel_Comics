@@ -55,6 +55,10 @@ public class MainGalleryRecyclerViewAdapter extends RecyclerView.Adapter<MainGal
 		notifyDataSetChanged();
 	}
 
+	public List<DomainComic> getComicList() {
+		return this.comicList;
+	}
+
 	@Override
 	public int getItemCount() {
 		return comicList.size();
