@@ -26,7 +26,7 @@ public class GetMainGalleryInteractor extends BaseInteractor<List<DomainComic>> 
 	}
 
 	@Override
-	protected Observable<List<DomainComic>> buildObservable() {
+	public Observable<List<DomainComic>> buildObservable() {
 
 		return marvelService.getComics()
 				.map(comicWrapper -> mapper.mapList(comicWrapper.data().results()));

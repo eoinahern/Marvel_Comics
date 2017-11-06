@@ -16,14 +16,10 @@ import marvelcomics.eoinahern.ie.marvelcomics.UI.BasePresenter;
 public class MainGalleryActivityPresenter extends BasePresenter<MainGalleryActivityView> {
 
 	private final GetMainGalleryInteractor getMainGalleryInteractor;
-	private final GetBudgetInfoInteractor getBudgetInfoInteractor;
-
 
 	@Inject
-	public MainGalleryActivityPresenter(GetMainGalleryInteractor getMainGalleryInteractor,
-										GetBudgetInfoInteractor getBudgetInfoInteractor) {
+	public MainGalleryActivityPresenter(GetMainGalleryInteractor getMainGalleryInteractor) {
 		this.getMainGalleryInteractor = getMainGalleryInteractor;
-		this.getBudgetInfoInteractor = getBudgetInfoInteractor;
 	}
 
 	public void loadData() {
@@ -34,15 +30,14 @@ public class MainGalleryActivityPresenter extends BasePresenter<MainGalleryActiv
 
 			@Override
 			public void onNext(List<DomainComic> comicList) {
-				//return data and update UI
 
 				getView().hideLoading();
 				getView().updateRecycler(comicList);
-				getBudgetInfoInteractor.setComicList(comicList);
 			}
 
 			@Override
 			public void onError(Throwable t) {
+
 				super.onError(t);
 				getView().hideLoading();
 				getView().showError();
@@ -50,25 +45,6 @@ public class MainGalleryActivityPresenter extends BasePresenter<MainGalleryActiv
 		});
 	}
 
-
-	public void getBudgetInfo() {
-
-		getBudgetInfoInteractor.execute(new BaseDisposableObserver<Map<Float, Integer>>() {
-
-
-			@Override
-			public void onNext(Map<Float, Integer> floatIntegerMap) {
-				//return results map and show it in a dialog!
-			}
-
-
-			@Override
-			public void onError(Throwable t) {
-				super.onError(t);
-				//show error dialog
-			}
-		});
-	}
 
 	public void navigateToComic(DomainComic comic) {
 		getView().goToComicInfo(comic);
