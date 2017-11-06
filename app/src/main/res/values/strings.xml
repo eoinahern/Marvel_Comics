@@ -5,8 +5,12 @@
 	<string name="dollar">$%s</string>
 	<string name="desc_not_available">Description not currently available</string>
 	<string name="authors_not_available">Authors not available</string>
+	<string name="data_not_avail">Data not available!</string>
 	<string name="desc">Description</string>
 	<string name="pages">Pages:</string>
 	<string name="price">Price:</string>
 	<string name="authors">Authors</string>
+	<string name="no_results">no results available!</string>
+	<string name="cost">cost: </string>
+	<string name="pages_small">pages: </string>
 </resources>

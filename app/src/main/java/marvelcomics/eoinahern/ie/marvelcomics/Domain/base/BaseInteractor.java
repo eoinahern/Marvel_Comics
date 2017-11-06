@@ -25,11 +25,11 @@ public abstract class BaseInteractor<T> {
 				.subscribeWith(obs));
 	}
 
-	protected Scheduler getMaintThreadScheduler(){
+	public Scheduler getMaintThreadScheduler(){
 		return AndroidSchedulers.mainThread();
 	}
 
-	protected Scheduler getIOScheduler() {
+	public Scheduler getIOScheduler() {
 		return Schedulers.io();
 	}
 

@@ -9,7 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -31,6 +33,7 @@ public class MainGalleryActivity extends BaseActivity implements MainGalleryActi
 	@BindView(R.id.recycler) RecyclerView recyclerView;
 	@BindView(R.id.progbar) MaterialProgressBar progbar;
 	@BindView(R.id.fab) FloatingActionButton fab;
+	@BindView(R.id.error_txt) TextView errorTxt;
 
 	private ActionBar acBar;
 
@@ -86,13 +89,20 @@ public class MainGalleryActivity extends BaseActivity implements MainGalleryActi
 	public void updateRecycler(List<DomainComic> comics) {
 
 		if (comics != null && !comics.isEmpty()) {
+			hideError();
 			adapter.updateView(comics);
 		}
 	}
 
 	@Override
 	public void showError() {
+		errorTxt.setVisibility(View.VISIBLE);
 		Log.d("empty", "null or empty");
+	}
+
+	@Override
+	public void hideError() {
+		errorTxt.setVisibility(View.GONE);
 	}
 
 	@Override
@@ -109,6 +119,7 @@ public class MainGalleryActivity extends BaseActivity implements MainGalleryActi
 
 	@OnClick(R.id.fab)
 	public void openResultsActivity() {
-		startActivity(ResultsActivity.getStartIntent(this, adapter.getComicList()));
+		startActivity(ResultsActivity.getStartIntent(this)
+				.putParcelableArrayListExtra("comicList", (ArrayList) adapter.getComicList()));
 	}
 }

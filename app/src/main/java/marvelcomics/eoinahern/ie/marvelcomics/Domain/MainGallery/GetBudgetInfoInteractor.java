@@ -2,46 +2,58 @@ package marvelcomics.eoinahern.ie.marvelcomics.Domain.MainGallery;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import marvelcomics.eoinahern.ie.marvelcomics.DI.annotation.PerScreen;
-import marvelcomics.eoinahern.ie.marvelcomics.Data.api.api.MarvelService;
 import marvelcomics.eoinahern.ie.marvelcomics.Data.api.util.KnapSackAlgo;
 import marvelcomics.eoinahern.ie.marvelcomics.Domain.base.BaseInteractor;
 import marvelcomics.eoinahern.ie.marvelcomics.Domain.models.DomainComic;
-
+import marvelcomics.eoinahern.ie.marvelcomics.Domain.models.Entry;
 
 @PerScreen
-public class GetBudgetInfoInteractor extends BaseInteractor<Map<Float, Integer>> {
+public class GetBudgetInfoInteractor extends BaseInteractor<List<Entry>> {
 
 	private final KnapSackAlgo knapSackAlgo;
-	private final MarvelService marvelService;
+	private List<DomainComic> comicList;
 
 	@Inject
-	public GetBudgetInfoInteractor(KnapSackAlgo knapSackAlgo, MarvelService marvelService) {
+	public GetBudgetInfoInteractor(KnapSackAlgo knapSackAlgo) {
 		this.knapSackAlgo = knapSackAlgo;
-		this.marvelService = marvelService;
+		comicList = new ArrayList<>();
 	}
 
-	public void setComicList() {
-
+	public void setComicList(List<DomainComic> comicList) {
+		this.comicList.addAll(comicList);
 	}
-
 
 	@Override
-	protected Observable<Map<Float, Integer>> buildObservable() {
+	protected Observable<List<Entry>> buildObservable() {
 
+		return Observable.fromCallable(() -> {
 
-		//1. 0/1 knasack dynamic programming problem
-		//dont know shit about it.
+			List<Entry> entryList = new ArrayList<>();
 
-		//weight = cost!!
-		// total weight = budget !!!
-		// value = number pages
+			//setup
+			knapSackAlgo.setComicList(comicList);
+			knapSackAlgo.createArrays();
 
-		return null;
+			int[] pages = knapSackAlgo.getPages();
+			int[] weight = knapSackAlgo.getWeights();
+
+			//hard code some cost values
+
+			entryList.add(0,new Entry(2.00f,
+					knapSackAlgo.knapSack(pages, weight, 200, 0)));
+
+			entryList.add(1,new Entry(5.00f,
+					knapSackAlgo.knapSack(pages, weight, 500, 0)));
+
+			entryList.add(2,new Entry(7.00f,
+					knapSackAlgo.knapSack(pages, weight, 700, 0)));
+
+			return entryList;
+		});
 	}
 }

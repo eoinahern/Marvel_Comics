@@ -17,5 +17,7 @@ public interface MainGalleryActivityView extends BaseView {
 
 	void showError();
 
+	void hideError();
+
 	void goToComicInfo(DomainComic comic);
 }

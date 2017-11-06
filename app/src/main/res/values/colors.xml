@@ -8,5 +8,6 @@
 	<color name="background_black">#000000</color>
 	<color name="dark_grey">#474747</color>
 	<color name="light_grey">#696969</color>
+	<color name="v_light_grey">#bdbdbd</color>
 	<color name="transparent">#66ffffff</color>
 </resources>

@@ -44,6 +44,17 @@
 				android:minWidth="40dp"
 				android:theme="@style/AppTheme.Progress" />
 
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="18sp"
+				android:visibility="gone"
+				android:id="@+id/error_txt"
+				android:textColor="@color/light_grey"
+				tools:text="@string/data_not_avail"
+				android:text="@string/data_not_avail"
+				android:layout_gravity="center"/>
+
 		</FrameLayout>
 
 
