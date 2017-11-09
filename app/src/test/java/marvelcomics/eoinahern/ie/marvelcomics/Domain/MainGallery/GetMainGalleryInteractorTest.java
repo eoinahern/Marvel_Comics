@@ -30,20 +30,16 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class GetMainGalleryInteractorTest {
 
-
 	@Mock List<Comic> mockComicList;
 	@Mock List<DomainComic> mockDomainComicList;
 	@Mock ComicWrapper mockComicWrapper;
-	@Mock Function<ComicWrapper, List<DomainComic>> mockFunc;
 	@Mock ComicContainer mockComicContainer;
 	@Mock MarvelService mockMarvelService;
-	@Mock Observable<ComicWrapper> mockObs;
-	@Mock Observable<List<DomainComic>>	 mocky;
 	@Mock ComicMapper mockComicMapper;
 
 
 	@InjectMocks
-	private  GetMainGalleryInteractor getMainGalleryInteractor;
+	private GetMainGalleryInteractor getMainGalleryInteractor;
 
 	@Before
 	public void setUp() throws Exception {
@@ -57,8 +53,6 @@ public class GetMainGalleryInteractorTest {
 		when(mockComicContainer.results()).thenReturn(mockComicList);
 		when(mockComicMapper.mapList(mockComicList)).thenReturn(mockDomainComicList);
 		when(mockDomainComicList.size()).thenReturn(2);
-
-
 	}
 
 	@Test
@@ -73,8 +67,4 @@ public class GetMainGalleryInteractorTest {
 		verify(mockComicContainer).results();
 		verify(mockComicMapper).mapList(mockComicList);
 	}
-
-
-
-
 }
